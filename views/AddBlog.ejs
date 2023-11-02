@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* Reset default margin and padding */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Set a background color for the entire page */
+
+      /* Navbar */
+      nav {
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px;
+      }
+
+      nav a:hover {
+        background-color: #fff;
+        color: #000;
+      }
+
+      /* Form */
+      form {
+        width: 500px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .image-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .image-input input {
+        width: 50%;
+      }
+      .whole-form {
+        background-color: #f0f0f0;
+        text-align: center; /* Center content horizontally */
+        display: flex;
+        justify-content: center; /* Center content vertically */
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="#">About</a>
+      <a href="/addBlog">Add Blog</a>
+    </nav>
+    <div class="whole-form">
+      <form action="/submit" method="post">
+        <input type="text" name="title" placeholder="Title" />
+        <input type="text" name="description" placeholder="Description" />
+        <div class="image-input">
+          <input type="file" name="image" />
+          <p>Insert An Image</p>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
