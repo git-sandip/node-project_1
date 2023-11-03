@@ -3,11 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>🚀 CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
         padding: 0;
+        font-family: "Anonymous Pro", monospace;
+        overflow: hidden;
       }
 
       /* Navbar */
@@ -27,6 +35,46 @@
         background-color: #fff;
         color: #000;
       }
+      .container {
+        margin: 20px;
+      }
+
+      .blog-card {
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .blog-image {
+        width: 100%;
+        height: auto;
+      }
+
+      .blog-title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .blog-subtitle {
+        font-size: 18px;
+        color: #888;
+      }
+
+      .blog-description {
+        margin-top: 10px;
+      }
+
+      .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -35,5 +83,30 @@
       <a href="#">About</a>
       <a href="/addBlog">Add Blog</a>
     </nav>
+    <div class="container">
+      <div class="blog-card">
+        <img class="blog-image" src="blog_image_1.jpg" alt="Blog Image" />
+        <div class="blog-title">Blog Title 1</div>
+        <div class="blog-subtitle">Subtitle for Blog 1</div>
+        <div class="blog-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          condimentum tincidunt purus vel eu.
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <img class="blog-image" src="blog_image_2.jpg" alt="Blog Image" />
+        <div class="blog-title">Blog Title 2</div>
+        <div class="blog-subtitle">Subtitle for Blog 2</div>
+        <div class="blog-description">
+          Sed vehicula, dui in porta ultrices, metus risus malesuada dolor, eget
+          congue ante ex eget libero.
+        </div>
+      </div>
+
+      <!-- Add more blog cards here as needed -->
+    </div>
+
+    <div class="footer">&copy; 2023 Sandip Sapkota</div>
   </body>
 </html>

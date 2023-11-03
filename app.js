@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-
 app.set("view engine", "ejs");
 
+//database
+require("./model/index");
 app.get("/", (req, res) => {
   res.render("index");
 });
