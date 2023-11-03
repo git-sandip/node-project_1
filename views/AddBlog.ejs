@@ -4,12 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
         padding: 0;
+        font-family: "Inter", sans-serif;
+        overflow: hidden;
       }
-
       /* Navbar */
       nav {
         background-color: #000;
@@ -83,7 +90,7 @@
       <a href="/addBlog">Add Blog</a>
     </nav>
     <div class="whole-form">
-      <form action="/submit" method="post">
+      <form action="/createBlog" method="post">
         <input type="text" name="title" placeholder="Title" />
         <input type="text" name="description" placeholder="Description" />
         <div class="image-input">
