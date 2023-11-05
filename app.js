@@ -3,10 +3,11 @@ const { blogs } = require("./model/index");
 const app = express();
 require("dotenv").config();
 app.set("view engine", "ejs");
-
 // database
 require("./model/index");
-
+//multer
+const { multer, storage } = require("./middleware/multerConfig");
+const upload = multer({ storage: storage });
 //use requested data
 app.use(express.json());
 app.use(
@@ -24,16 +25,21 @@ app.get("/addBlog", (req, res) => {
 app.get("/about", (req, res) => {
   res.render("About");
 });
-app.post("/createBlog", async (req, res) => {
+app.post("/createBlog", upload.single("image"), async (req, res) => {
+  const { title, description } = req.body;
+  const imageName = req.file.filename;
+
   await blogs.create({
-    title: req.body.title,
-    description: req.body.description,
+    title,
+    description,
+    imageName,
   });
   res.send({
     status: 200,
     msg: "Blog Created",
-    title: req.body.title,
-    description: req.body.description,
+    title,
+    description,
+    imageName,
   });
 });
 

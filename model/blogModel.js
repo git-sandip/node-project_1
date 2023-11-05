@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imageName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
   return Blog;
 };
