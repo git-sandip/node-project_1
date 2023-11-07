@@ -17,7 +17,7 @@
         margin: 0;
         padding: 0;
         font-family: "Inter", sans-serif;
-        overflow: hidden;
+        overflow-x: hidden;
       }
 
       /* Navbar */
@@ -50,7 +50,7 @@
       }
 
       .blog-image {
-        width: 100%;
+        width: 10%;
         height: auto;
       }
 
@@ -86,25 +86,14 @@
       <a href="/addBlog">Add Blog</a>
     </nav>
     <div class="container">
+      <% blogs.forEach((blogs)=> {%>
       <div class="blog-card">
-        <img class="blog-image" src="blog_image_1.jpg" alt="Blog Image" />
-        <div class="blog-title">Blog Title 1</div>
-        <div class="blog-subtitle">Subtitle for Blog 1</div>
-        <div class="blog-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          condimentum tincidunt purus vel eu.
-        </div>
+        <img class="blog-image" src="<%- blogs.imageName%>" alt="Blog Image" />
+        <div class="blog-title"><%- blogs.title%></div>
+        <div class="blog-subtitle"><%- blogs.subtitle%></div>
+        <div class="blog-description"><%- blogs.description%>.</div>
       </div>
-
-      <div class="blog-card">
-        <img class="blog-image" src="blog_image_2.jpg" alt="Blog Image" />
-        <div class="blog-title">Blog Title 2</div>
-        <div class="blog-subtitle">Subtitle for Blog 2</div>
-        <div class="blog-description">
-          Sed vehicula, dui in porta ultrices, metus risus malesuada dolor, eget
-          congue ante ex eget libero.
-        </div>
-      </div>
+      <% }); %>
 
       <!-- Add more blog cards here as needed -->
     </div>
