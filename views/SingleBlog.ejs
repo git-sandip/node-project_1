@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      nav {
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px;
+      }
+
+      nav a:hover {
+        background-color: #fff;
+        color: #000;
+      }
+      .blog-container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .blog-item {
+        margin-bottom: 40px;
+      }
+
+      .blog-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .blog-subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .blog-description {
+        white-space: pre-line;
+        margin-bottom: 20px;
+      }
+
+      .blog-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .blog-date {
+        font-size: 14px;
+        color: #888;
+      }
+      .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/addBlog">Add Blog</a>
+    </nav>
+
+    <div class="blog-container">
+      <div class="blog-item">
+        <h1 class="blog-title"><%= Blog[0].title %></h1>
+        <h2 class="blog-subtitle"><%= Blog[0].subtitle %></h2>
+        <img
+          class="blog-image"
+          src="<%= Blog[0].imageName %>"
+          alt="Blog Image"
+        />
+
+        <p class="blog-description">
+          <%= Blog[0].description.toString('utf8') %>
+        </p>
+        <p class="blog-date">
+          Created at: <%= Blog[0].createdAt.toLocaleString() %>
+        </p>
+      </div>
+    </div>
+    <div class="footer">&copy; 2023 Sandip Sapkota</div>
+  </body>
+</html>

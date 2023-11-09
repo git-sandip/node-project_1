@@ -18,7 +18,6 @@ app.use(
 
 app.get("/", async (req, res) => {
   const allBlogs = await blogs.findAll();
-  console.log("🚀 ~ file: app.js:21 ~ app.get ~ allBlogs:", allBlogs);
   res.render("index", { blogs: allBlogs });
 });
 app.get("/addBlog", (req, res) => {
@@ -45,6 +44,19 @@ app.post("/createBlog", upload.single("image"), async (req, res) => {
     imageName,
     subtitle,
   });
+});
+
+//getting single blog
+app.get("/blog/:id", async (req, res) => {
+  const id = req.params.id;
+  const Blog = await blogs.findAll({
+    where: {
+      id: id,
+    },
+  });
+  console.log("🚀 ~ file: app.js:57 ~ app.get ~ Blog:", Blog);
+
+  res.render("SingleBlog", { Blog: Blog });
 });
 
 //static files acessing
