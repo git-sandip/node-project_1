@@ -3,6 +3,7 @@ const { blogs } = require("./model/index");
 const app = express();
 require("dotenv").config();
 app.set("view engine", "ejs");
+const fs = require("fs");
 // database
 require("./model/index");
 //multer
@@ -55,20 +56,96 @@ app.get("/blog/:id", async (req, res) => {
       id: id,
     },
   });
-  console.log("🚀 ~ file: app.js:57 ~ app.get ~ Blog:", Blog);
-
   res.render("SingleBlog", { Blog: Blog });
 });
 
 //deleting the blog
 app.get("/delete/:id", async (req, res) => {
   const id = req.params.id;
+  const oldData = await blogs.findAll({
+    where: {
+      id: id,
+    },
+  });
+  const oldFileName = oldData[0].imageName;
+  const lengthtocut = process.env.BACKEND_URL.length;
+  const filenameAftercut = oldFileName.slice(lengthtocut);
+  fs.unlink("./uploads/" + filenameAftercut, (err) => {
+    if (err) {
+      console.log("error occured", err);
+    } else {
+      console.log("Old File Deleted successfully");
+    }
+  });
   blogs.destroy({
     where: {
       id: id,
     },
   });
+
   res.redirect("/");
+});
+//editing the blog
+app.get("/edit/:id", async (req, res) => {
+  const id = req.params.id;
+  const Blog = await blogs.findAll({
+    where: {
+      id: id,
+    },
+  });
+  res.render("EditBlog", { Blog: Blog });
+});
+
+//handeling the edited data using post method;
+app.post("/editBlog/:id", upload.single("image"), async (req, res) => {
+  const id = req.params.id;
+  const { title, description, subtitle } = req.body;
+  let imageName;
+  if (req.file) {
+    imageName = req.file.filename;
+    console.log("🚀 ~ file: app.js:90 ~ app.post ~ imageName:", imageName);
+  }
+  const oldData = await blogs.findAll({
+    where: {
+      id: id,
+    },
+  });
+  const oldFileName = oldData[0].imageName;
+  const lengthtocut = process.env.BACKEND_URL.length;
+  const filenameAftercut = oldFileName.slice(lengthtocut);
+
+  if (imageName) {
+    fs.unlink("./uploads/" + filenameAftercut, (err) => {
+      if (err) {
+        console.log("error occured", err);
+      } else {
+        console.log("Old File Deleted successfully");
+      }
+    });
+  }
+
+  await blogs.update(
+    {
+      title,
+      description,
+      imageName: imageName ? process.env.BACKEND_URL + imageName : oldFileName,
+      subtitle,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+  // res.send({
+  //   status: 200,
+  //   msg: "Blog Created",
+  //   title,
+  //   description,
+  //   imageName,
+  //   subtitle,
+  // });
+  res.redirect("/blog/" + id);
 });
 
 //static files acessing
