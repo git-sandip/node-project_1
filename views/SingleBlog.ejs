@@ -66,6 +66,24 @@
         font-size: 14px;
         color: #888;
       }
+      .delete-button {
+        background-color: #c34040; /* Light red color */
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 5px; /* Rounded edges */
+      }
+
+      .delete-button a {
+        text-decoration: none; /* Remove underline for anchor tag */
+        color: #fff;
+      }
+
+      .delete-button:hover {
+        background-color: #ff0000; /* Light red color on hover */
+      }
       .footer {
         background-color: #333;
         color: #fff;
@@ -86,20 +104,22 @@
 
     <div class="blog-container">
       <div class="blog-item">
-        <h1 class="blog-title"><%= Blog[0].title %></h1>
-        <h2 class="blog-subtitle"><%= Blog[0].subtitle %></h2>
+        <h1 class="blog-title"><%- Blog[0].title %></h1>
+        <h2 class="blog-subtitle"><%- Blog[0].subtitle %></h2>
+        <p class="blog-date">
+          Created at: <%- Blog[0].createdAt.toLocaleString() %>
+        </p>
         <img
           class="blog-image"
-          src="<%= Blog[0].imageName %>"
-          alt="Blog Image"
+          src="<%-Blog[0].imageName %>"
+          alt="Blog-Image"
         />
-
         <p class="blog-description">
-          <%= Blog[0].description.toString('utf8') %>
+          <%- Blog[0].description.toString('utf8') %>
         </p>
-        <p class="blog-date">
-          Created at: <%= Blog[0].createdAt.toLocaleString() %>
-        </p>
+        <button class="delete-button">
+          <a href="/delete/<%- Blog[0].id %>">Delete</a>
+        </button>
       </div>
     </div>
     <div class="footer">&copy; 2023 Sandip Sapkota</div>

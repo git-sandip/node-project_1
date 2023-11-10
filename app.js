@@ -33,17 +33,18 @@ app.post("/createBlog", upload.single("image"), async (req, res) => {
   await blogs.create({
     title,
     description,
-    imageName,
+    imageName: process.env.BACKEND_URL + imageName,
     subtitle,
   });
-  res.send({
-    status: 200,
-    msg: "Blog Created",
-    title,
-    description,
-    imageName,
-    subtitle,
-  });
+  // res.send({
+  //   status: 200,
+  //   msg: "Blog Created",
+  //   title,
+  //   description,
+  //   imageName,
+  //   subtitle,
+  // });
+  res.redirect("/");
 });
 
 //getting single blog
@@ -57,6 +58,17 @@ app.get("/blog/:id", async (req, res) => {
   console.log("🚀 ~ file: app.js:57 ~ app.get ~ Blog:", Blog);
 
   res.render("SingleBlog", { Blog: Blog });
+});
+
+//deleting the blog
+app.get("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  blogs.destroy({
+    where: {
+      id: id,
+    },
+  });
+  res.redirect("/");
 });
 
 //static files acessing
